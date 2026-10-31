@@ -1,0 +1,79 @@
+
+/* Theme is light */
+html[data-theme="light"] {
+	--bg: #efefef;
+	--bg-raised: #dddddd;
+	--bg-opposite: black;
+	--text: #181818;
+	--text-dim: #555555;
+	--text-opposite: #efefef;
+	--accent: slateblue;
+	--accent-dim: #45c5ee;
+}
+
+/* Theme is dark */
+html[data-theme="dark"] {
+	--bg: #181818;
+	--bg-raised: #444444;
+	--bg-opposite: white;
+	--text: #e8e8ec;
+	--text-dim: #9a9aa5;
+	--text-opposite: #181818;
+	--accent: slateblue;
+	--accent-dim: #45c5ee;
+}
+
+body {
+	background-color: var(--bg);
+	color: var(--text);
+}
+
+h1,h2,h3,h4 {
+	text-align: center;
+}
+
+a {
+	color: inherit;
+}
+
+p {
+	margin: 0.2rem;
+}
+
+#links,
+#footer {
+	text-align: center;
+}
+
+#links {
+	padding-top: 1.5rem;
+}
+
+#links a {
+	position: relative;
+	padding: 1rem 3rem;
+	color: var(--text);
+	text-decoration: none;
+	border-bottom: 3px solid var(--bg-raised);
+}
+
+#links a:hover {
+	color: var(--text-dim);
+	border-bottom: 3px solid var(--accent);
+	cursor: pointer;
+}
+
+#footer {
+	padding-bottom: 5rem;
+}
+
+#resume h5 {
+	color: var(--accent-dim);
+}
+
+.u-text-center { text-align: center; }
+.u-text-center * { text-align: center; }
+.u-text-left { text-align: left; }
+.u-text-left * { text-align: left; }
+.u-text-right { text-align: right; }
+.u-text-right * { text-align: right; }

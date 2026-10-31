@@ -1,18 +1,31 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Bind resources to your worker in `wrangler.jsonc`. After adding bindings, a type definition for the
- * `Env` object can be regenerated with `npm run cf-typegen`.
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
+
+import { errorPage } from "webutils";
+
+import { routerHtml } from "./context";
+import "./pages";
+
+export const X_OPTIONS = {
+	// urls
+	BASE_URL: "https://sethicus.com/",
+	BASE_WWW_URL: "https://www.sethicus.com/",
+	// information
+	DESCRIPTION: "Seth Cooper",
+	PHOTO_FAVICON: "./images/favicon.png",
+	PHOTO_FAVICON_APPLE: "./images/favicon-apple.png",
+};
 
 export default {
-	async fetch(request, env, ctx): Promise<Response> {
-		return new Response("Hello World!");
+	async fetch(req, env, ctx) {
+		try {
+			return await (routerHtml).fetch(req, env, ctx);
+		} catch (err) {
+			console.error(err);
+			try {
+				return errorPage(500, req);
+			} catch (err2) {
+				console.error(err2);
+				return new Response("Internal server error", { status: 500 });
+			}
+		}
 	},
 } satisfies ExportedHandler<Env>;
